@@ -1,8 +1,9 @@
 namespace NetValidator;
+
 public class Validator<T>
 {
     private readonly T _instance;
-    private readonly List<Func<bool>> _rules = [];
+    private readonly List<ValidationRules> _validationRules = [];
 
     private Validator(T instance)
     {
@@ -20,13 +21,23 @@ public class Validator<T>
         return new RuleBuilder<T, TProperty>(this, _instance, property);
     }
 
-    internal void AddRule(Func<bool> rule)
+    internal void AddValidationRules(ValidationRules rules)
     {
-        _rules.Add(rule);
+        _validationRules.Add(rules);
     }
 
     public bool Validate()
     {
-        return _rules.All(rule => rule());
+        foreach (var rule in _validationRules)
+        {
+            bool valid = rule.validations.All(x => x());
+            if (!valid)
+            {
+                Console.WriteLine(rule.message);
+                return false;
+            }
+
+        }
+        return true;
     }
 }

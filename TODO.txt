@@ -1,6 +1,8 @@
 RuleBuilder: 
-- Create NotNullOrEmpty 
-- Create LowerThan 
+- NotNullOrEmpty 
+- LowerThan 
+- EqualTo 
+- InRange
 
 Validator: 
 - Support code and messages 
