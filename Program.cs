@@ -7,7 +7,7 @@ User user = new()
 { 
     Name = "Alix",
     Email = "alice@test.com",
-    Age = 17,
+    Age = 19,
     UserCode = null
 };
 
@@ -18,4 +18,4 @@ var isValid = Validator<User>.For(user)
                 // .Rule(x=> x.Name).EqualTo("Alix").WithMessage("Name must be Alix")
                 .Validate();
 
-System.Console.WriteLine($"Is user valid? {isValid}");
+System.Console.WriteLine($"IsValid: {isValid.Item1} {isValid.Item2}");

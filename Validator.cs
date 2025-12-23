@@ -26,18 +26,15 @@ public class Validator<T>
         _validationRules.Add(rules);
     }
 
-    public bool Validate()
+    public (bool, ValidationMessage?) Validate()
     {
         foreach (var rule in _validationRules)
         {
             bool valid = rule.Validations.All(x => x());
             if (!valid)
-            {
-                Console.WriteLine(rule.Message);
-                return false;
-            }
+                return (false, rule.Message);
 
         }
-        return true;
+        return (true, null);
     }
 }
