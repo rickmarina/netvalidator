@@ -116,7 +116,18 @@ public class RuleBuilder<T, TProperty>
 
         });
         return this;
+    }
 
+    public RuleBuilder<T, TProperty> MatchesRegex(string pattern)
+    {
+        _validationRules.Validations.Add(() =>
+        {
+            if (_property(_instance) is not string propertyValue)
+                return false;
+
+            return System.Text.RegularExpressions.Regex.IsMatch(propertyValue, pattern);
+        });
+        return this;
     }
 
     public Validator<T> WithMessage(string code, string message)
