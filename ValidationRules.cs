@@ -5,14 +5,14 @@ namespace NetValidator;
 /// </summary>
 public class ValidationRules
 {
-    public List<Func<bool>> validations {get; set;} = [];
-    public string message {get; set;} = string.Empty;
+    public List<Func<bool>> Validations {get; set;} = [];
+    public ValidationMessage? Message {get; set;}
 
     public ValidationRules() {}
-    public ValidationRules(List<Func<bool>> validations, string message)
+    public ValidationRules(List<Func<bool>> validations, ValidationMessage validationMessage)
     {
-        this.validations = validations;
-        this.message = message;
+        this.Validations = validations;
+        this.Message = validationMessage;
     }
 
 

@@ -5,7 +5,7 @@
 - [x] InRange
 
 ## Validator: 
-- [ ] Support code and messages 
+- [x] Support code and messages 
 - [ ] Async validations 
 - [ ] Extend with domain validations 
 

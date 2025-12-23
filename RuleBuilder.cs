@@ -19,13 +19,13 @@ public class RuleBuilder<T, TProperty>
 
     public RuleBuilder<T, TProperty> NotNull()
     {
-        _validationRules.validations.Add(() => _property(_instance) != null);
+        _validationRules.Validations.Add(() => _property(_instance) != null);
         return this;
     }
 
     public RuleBuilder<T, TProperty> NotEmpty()
     {
-        _validationRules.validations.Add(() =>
+        _validationRules.Validations.Add(() =>
         {
             var value = _property(_instance);
             return value switch
@@ -46,7 +46,7 @@ public class RuleBuilder<T, TProperty>
 
     public RuleBuilder<T, TProperty> GreaterThan(TProperty value)
     {
-        _validationRules.validations.Add(() =>
+        _validationRules.Validations.Add(() =>
         {
             var propertyValue = _property(_instance);
 
@@ -64,7 +64,7 @@ public class RuleBuilder<T, TProperty>
 
     public RuleBuilder<T, TProperty> LessThan(TProperty value)
     {
-        _validationRules.validations.Add(() =>
+        _validationRules.Validations.Add(() =>
         {
             var propertyValue = _property(_instance);
 
@@ -82,7 +82,7 @@ public class RuleBuilder<T, TProperty>
 
     public RuleBuilder<T, TProperty> EqualTo(TProperty value)
     {
-        _validationRules.validations.Add(() =>
+        _validationRules.Validations.Add(() =>
         {
             var propertyValue = _property(_instance);
 
@@ -100,7 +100,7 @@ public class RuleBuilder<T, TProperty>
 
     public RuleBuilder<T, TProperty> InRange(TProperty value1, TProperty value2)
     {
-        _validationRules.validations.Add(() =>
+        _validationRules.Validations.Add(() =>
         {
             var propertyValue = _property(_instance);
             if (propertyValue is null || value1 is null || value2 is null)
@@ -119,9 +119,9 @@ public class RuleBuilder<T, TProperty>
 
     }
 
-    public Validator<T> WithMessage(string message)
+    public Validator<T> WithMessage(string code, string message)
     {
-        _validationRules.message = message;
+        _validationRules.Message = new ValidationMessage(code, message);
         _validator.AddValidationRules(_validationRules);
         return _validator;
     }

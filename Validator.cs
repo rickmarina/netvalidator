@@ -30,10 +30,10 @@ public class Validator<T>
     {
         foreach (var rule in _validationRules)
         {
-            bool valid = rule.validations.All(x => x());
+            bool valid = rule.Validations.All(x => x());
             if (!valid)
             {
-                Console.WriteLine(rule.message);
+                Console.WriteLine(rule.Message);
                 return false;
             }
 
